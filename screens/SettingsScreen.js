@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
   StatusBar, Switch, Alert, TextInput, Modal, KeyboardAvoidingView, Platform,
@@ -12,6 +13,7 @@ import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS } from '../constants/theme
 import ConfirmModal from '../components/ConfirmModal';
 
 const SettingsScreen = () => {
+  const navigation = useNavigation();
   const { isDark, toggleTheme } = useTheme();
   const C = isDark ? COLORS.dark : COLORS.light;
   const insets = useSafeAreaInsets();
@@ -222,13 +224,20 @@ const SettingsScreen = () => {
         {/* About */}
         <SectionHeader label="About" C={C} />
         <SettingCard C={C} isDark={isDark}>
-          <View style={styles.settingRow}>
-            <Text style={[TYPOGRAPHY.body, { color: C.textSecondary }]}>AttendX</Text>
-            <Text style={[TYPOGRAPHY.small, { color: C.textMuted }]}>v1.0.0</Text>
-          </View>
-          <Text style={[TYPOGRAPHY.small, { color: C.textMuted, marginTop: 4 }]}>
-            Your smart attendance companion. Data stored locally on device.
-          </Text>
+          <TouchableOpacity
+            style={styles.settingRow}
+            onPress={() => navigation.navigate('About')}
+            activeOpacity={0.7}
+          >
+            <View style={styles.settingLeft}>
+              <Ionicons name="information-circle-outline" size={20} color={C.accent} />
+              <View style={{ marginLeft: SPACING.sm }}>
+                <Text style={[TYPOGRAPHY.bodyMedium, { color: C.text }]}>About AttendX</Text>
+                <Text style={[TYPOGRAPHY.tiny, { color: C.textMuted }]}>Developer info & contact</Text>
+              </View>
+            </View>
+            <Ionicons name="chevron-forward" size={18} color={C.textMuted} />
+          </TouchableOpacity>
         </SettingCard>
       </ScrollView>
 
