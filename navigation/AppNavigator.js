@@ -11,6 +11,7 @@ import TimetableScreen from '../screens/TimetableScreen';
 import SubjectsScreen from '../screens/SubjectsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import CalendarScreen from '../screens/CalendarScreen';
+import AboutScreen from '../screens/AboutScreen';
 import AnimatedTabIcon from '../components/AnimatedTabIcon';
 
 const Tab = createBottomTabNavigator();
@@ -109,6 +110,7 @@ const AppNavigator = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="Main" component={TabNavigator} />
     <Stack.Screen name="Settings" component={SettingsScreen} />
+    <Stack.Screen name="About" component={AboutScreen} />
   </Stack.Navigator>
 );
 
